@@ -12,6 +12,13 @@ type LoginRequest struct {
 	Password string `json:"password"`
 }
 
+type MailCodeSendReply struct {
+}
+
+type MailCodeSendRequest struct {
+	Email string `json:"email"`
+}
+
 type UserDetailReply struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
@@ -19,4 +26,19 @@ type UserDetailReply struct {
 
 type UserDetailRequest struct {
 	Identity string `json:"identity"`
+}
+
+type UserRegisterReply struct {
+	UserId  string `json:"userId"`
+	Name    string `json:"name"`
+	Email   string `json:"email"`
+	Success bool   `json:"success"`
+	Error   string `json:"error"`
+}
+
+type UserRegisterRequest struct {
+	Name     string `json:"name"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+	Code     string `json:"code"`
 }

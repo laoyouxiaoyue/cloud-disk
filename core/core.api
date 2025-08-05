@@ -6,6 +6,27 @@ service core-api {
 
 	@handler UserDetail
 	post /user/detail (UserDetailRequest) returns (UserDetailReply)
+
+	@handler MailCodeSendRegister
+	post /mail/code/send/register (MailCodeSendRequest) returns (MailCodeSendReply)
+
+	@handler UserRegister
+	post /user/register (UserRegisterRequest) returns (UserRegisterReply)
+}
+
+type UserRegisterRequest {
+	Name     string `json:"name"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+	Code     string `json:"code"`
+}
+
+type UserRegisterReply {
+	UserId  string `json:"userId"`
+	Name    string `json:"name"`
+	Email   string `json:"email"`
+	Success bool   `json:"success"`
+	Error   string `json:"error"`
 }
 
 type LoginRequest {
@@ -25,4 +46,10 @@ type UserDetailReply {
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }
+
+type MailCodeSendRequest {
+	Email string `json:"email"`
+}
+
+type MailCodeSendReply {}
 
