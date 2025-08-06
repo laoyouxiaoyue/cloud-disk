@@ -27,14 +27,14 @@ func NewUserRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *User
 }
 
 func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *types.UserRegisterReply, err error) {
-	code, err := models.RDB.Get(l.ctx, req.Email).Result()
+	code, err := l.svcCtx.RDB.Get(l.ctx, req.Email).Result()
 	if err != nil {
 		return nil, err
 	}
 	if code != req.Code {
 		return nil, errors.New("验证码错误")
 	}
-	cnt, _ := models.Engine.Where("name = ?", req.Name).Count(new(models.UserBasic))
+	cnt, _ := l.svcCtx.Engine.Where("name = ?", req.Name).Count(new(models.UserBasic))
 	if cnt > 0 {
 		return nil, errors.New("用户名已存在")
 	}
@@ -44,7 +44,7 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		Password: helper.Md5(req.Password),
 		Identity: helper.GetUUID(),
 	}
-	_, err = models.Engine.Insert(user)
+	_, err = l.svcCtx.Engine.Insert(user)
 	if err != nil {
 		return nil, err
 	}

@@ -30,7 +30,7 @@ func NewMailCodeSendRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContex
 
 func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSendRequest) (resp *types.MailCodeSendReply, err error) {
 
-	count, err := models.Engine.Where("email = ?", req.Email).Count(new(models.UserBasic))
+	count, err := l.svcCtx.Engine.Where("email = ?", req.Email).Count(new(models.UserBasic))
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +39,7 @@ func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSend
 	}
 
 	code := helper.RandCode()
-	models.RDB.Set(l.ctx, req.Email, code, time.Second*time.Duration(define.CodeExpire))
+	l.svcCtx.RDB.Set(l.ctx, req.Email, code, time.Second*time.Duration(define.CodeExpire))
 	err = helper.MailSendCode(req.Email, code)
 
 	if err != nil {

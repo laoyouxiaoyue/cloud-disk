@@ -1,6 +1,8 @@
 package define
 
-import "github.com/golang-jwt/jwt/v4"
+import (
+	"github.com/golang-jwt/jwt/v4"
+)
 
 type UserClaim struct {
 	Id       int64
@@ -16,3 +18,7 @@ var CodeLength = 4
 
 // CodeExpire 验证码过期时间
 var CodeExpire = 300
+
+var TencentSECRETID = ""
+var TencentSECRETKEY = ""
+var TencentURL = ""

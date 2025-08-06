@@ -3,6 +3,20 @@
 
 package types
 
+type FileUploadReply struct {
+	Identity string `json:"identity"`
+	Ext      string `json:"identity"`
+	Name     string `json:"name"`
+}
+
+type FileUploadRequest struct {
+	Hash string `json:"hash,optional"`
+	Name string `json:"name,optional"`
+	Ext  string `json:"ext,optional"`
+	Size int64  `json:"size,optional"`
+	Path string `json:"path,optional"`
+}
+
 type LoginReply struct {
 	Message string `json:"token"`
 }
@@ -41,4 +55,15 @@ type UserRegisterRequest struct {
 	Password string `json:"password"`
 	Email    string `json:"email"`
 	Code     string `json:"code"`
+}
+
+type UserRepositorySaveReply struct {
+	Identity string `json:"identity"`
+}
+
+type UserRepositorySaveRequest struct {
+	ParentId           int64  `json:"parentId"`
+	RepositoryIdentity string `json:"repositoryIdentity"`
+	Ext                string `json:"ext"`
+	Name               string `json:"name"`
 }
