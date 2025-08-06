@@ -16,5 +16,5 @@ type UserRepository struct {
 }
 
 func (u *UserRepository) TableName() string {
-	return "repository_pool"
+	return "user_repository"
 }

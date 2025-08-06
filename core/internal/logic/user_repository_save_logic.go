@@ -27,13 +27,14 @@ func NewUserRepositorySaveLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 
 func (l *UserRepositorySaveLogic) UserRepositorySave(req *types.UserRepositorySaveRequest, userIdentity string) (resp *types.UserRepositorySaveReply, err error) {
 	ur := &models.UserRepository{
-		Identity:     helper.GetUUID(),
-		UserIdentity: userIdentity,
-		ParentId:     req.ParentId,
-		Name:         req.Name,
-		Ext:          req.Ext,
+		Identity:           helper.GetUUID(),
+		UserIdentity:       userIdentity,
+		ParentId:           req.ParentId,
+		Name:               req.Name,
+		Ext:                req.Ext,
+		RepositoryIdentity: req.RepositoryIdentity,
 	}
-	_, err = l.svcCtx.Engine.Insert(l.ctx, ur)
+	_, err = l.svcCtx.Engine.Insert(ur)
 	if err != nil {
 		return nil, err
 	}
