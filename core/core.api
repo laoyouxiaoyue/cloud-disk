@@ -28,7 +28,38 @@ service core-api {
 
 	@handler UserFileList
 	get /user/file/list (UserFileListRequest) returns (UserFileListReply)
+
+	@handler UserFileNameUpdate
+	post /user/file/name/update (UserFileNameUpdateRequest) returns (UserFileNameUpdateReply)
+
+	@handler UserFolderCreate
+	post /user/folder/create (UserFolderCreateRequest) returns (UserFolderCreateReply)
+
+	@handler UserFileDelete
+	delete /user/file/delete (UserFileDeleteRequest) returns (UserFileDeleteReply)
 }
+
+type UserFileDeleteRequest {
+	Identity string `json:"identity"`
+}
+
+type UserFileDeleteReply {}
+
+type UserFolderCreateRequest {
+	ParentId int64  `json:"parentId"`
+	Name     string `json:"name"`
+}
+
+type UserFolderCreateReply {
+	Identity string `json:"identity"`
+}
+
+type UserFileNameUpdateRequest {
+	Identity string `json:"identity"`
+	Name     string `json:"name"`
+}
+
+type UserFileNameUpdateReply {}
 
 type UserFileListRequest {
 	Id   int64 `json:"id,optional"`

@@ -26,3 +26,5 @@ var TencentURL = ""
 
 // PageSize 分页默认参数
 var PageSize = 20
+
+var Datetime = "2006-01-02 15:04:05"

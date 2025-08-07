@@ -52,6 +52,13 @@ type UserFile struct {
 	Size               int64  `json:"size"`
 }
 
+type UserFileDeleteReply struct {
+}
+
+type UserFileDeleteRequest struct {
+	Identity string `json:"identity"`
+}
+
 type UserFileListReply struct {
 	List  []*UserFile `json:"list"`
 	Count int64       `json:"count"`
@@ -61,6 +68,23 @@ type UserFileListRequest struct {
 	Id   int64 `json:"id,optional"`
 	Page int   `json:"page,optional"`
 	Size int   `json:"size,optional"`
+}
+
+type UserFileNameUpdateReply struct {
+}
+
+type UserFileNameUpdateRequest struct {
+	Identity string `json:"identity"`
+	Name     string `json:"name"`
+}
+
+type UserFolderCreateReply struct {
+	Identity string `json:"identity"`
+}
+
+type UserFolderCreateRequest struct {
+	ParentId int64  `json:"parentId"`
+	Name     string `json:"name"`
 }
 
 type UserRegisterReply struct {
