@@ -33,6 +33,15 @@ type MailCodeSendRequest struct {
 	Email string `json:"email"`
 }
 
+type ShareBasicCreateReply struct {
+	Identity string `json:"identity"`
+}
+
+type ShareBasicCreateRequest struct {
+	RepositoryIdentity string `json:"repository_identity"`
+	ExpiredTime        int    `json:"expired_time"`
+}
+
 type UserDetailReply struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
@@ -68,6 +77,14 @@ type UserFileListRequest struct {
 	Id   int64 `json:"id,optional"`
 	Page int   `json:"page,optional"`
 	Size int   `json:"size,optional"`
+}
+
+type UserFileMoveReply struct {
+}
+
+type UserFileMoveRequest struct {
+	Identity       string `json:"identity"`
+	ParentIdentity string `json:"parentidentity"`
 }
 
 type UserFileNameUpdateReply struct {

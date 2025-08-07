@@ -37,7 +37,29 @@ service core-api {
 
 	@handler UserFileDelete
 	delete /user/file/delete (UserFileDeleteRequest) returns (UserFileDeleteReply)
+
+	@handler UserFileMove
+	put /user/file/move (UserFileMoveRequest) returns (UserFileMoveReply)
+
+	@handler ShareBasicCreate
+	post /share/basic/create (ShareBasicCreateRequest) returns (ShareBasicCreateReply)
 }
+
+type ShareBasicCreateRequest {
+	RepositoryIdentity string `json:"repository_identity"`
+	ExpiredTime        int    `json:"expired_time"`
+}
+
+type ShareBasicCreateReply {
+	Identity string `json:"identity"`
+}
+
+type UserFileMoveRequest {
+	Identity       string `json:"identity"`
+	ParentIdentity string `json:"parentidentity"`
+}
+
+type UserFileMoveReply {}
 
 type UserFileDeleteRequest {
 	Identity string `json:"identity"`
