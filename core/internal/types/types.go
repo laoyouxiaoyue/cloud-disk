@@ -18,7 +18,8 @@ type FileUploadRequest struct {
 }
 
 type LoginReply struct {
-	Message string `json:"token"`
+	Message      string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type LoginRequest struct {
@@ -33,6 +34,14 @@ type MailCodeSendRequest struct {
 	Email string `json:"email"`
 }
 
+type RefreshTokenReply struct {
+	Token        string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
+type RefreshTokenRequest struct {
+}
+
 type ShareBasicCreateReply struct {
 	Identity string `json:"identity"`
 }
@@ -40,6 +49,18 @@ type ShareBasicCreateReply struct {
 type ShareBasicCreateRequest struct {
 	RepositoryIdentity string `json:"repository_identity"`
 	ExpiredTime        int    `json:"expired_time"`
+}
+
+type ShareBasicDetailReply struct {
+	RepositoryIdentity string `json:"repository_identity"`
+	Name               string `json:"name"`
+	Ext                string `json:"ext"`
+	Path               string `json:"path"`
+	Size               int64  `json:"size"`
+}
+
+type ShareBasicDetailRequest struct {
+	Identity string `json:"identity"`
 }
 
 type UserDetailReply struct {

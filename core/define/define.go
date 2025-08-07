@@ -8,7 +8,7 @@ type UserClaim struct {
 	Id       int64
 	Identity string
 	Name     string
-	jwt.RegisteredClaims
+	jwt.StandardClaims
 }
 
 var JwtKey = "cloud-disk-key"
@@ -28,3 +28,6 @@ var TencentURL = ""
 var PageSize = 20
 
 var Datetime = "2006-01-02 15:04:05"
+
+var TokenExpire = 600
+var RefreshTokenExpire = 6000

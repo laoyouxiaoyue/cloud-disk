@@ -40,5 +40,10 @@ func (l *UserFileNameUpdateLogic) UserFileNameUpdate(req *types.UserFileNameUpda
 	if err != nil {
 		return nil, err
 	}
+	//data1:= &models.RepositoryPool{
+	//	Name: req.Name,
+	//}
+	//-,err = l.svcCtx.Engine.Where("identity = ?", req.Identity).Update(data1)
+
 	return
 }

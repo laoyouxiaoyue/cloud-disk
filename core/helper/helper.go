@@ -21,11 +21,14 @@ import (
 func Md5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
-func GenerateToken(id int64, identity, name string) (string, error) {
+func GenerateToken(id int64, identity, name string, second int64) (string, error) {
 	uc := define.UserClaim{
 		Id:       id,
 		Name:     name,
 		Identity: identity,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Second * time.Duration(second)).Unix(),
+		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, uc)
 	tokenString, err := token.SignedString([]byte(define.JwtKey))

@@ -33,6 +33,7 @@ func (m *AuthMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			}
 			return
 		}
+
 		r.Header.Set("UserId", string(rune(uc.Id)))
 		r.Header.Set("UserName", uc.Name)
 		r.Header.Set("UserIdentity", uc.Identity)
